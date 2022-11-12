@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-
+console.log(__dirname);
 // only when ready to deploy
 //app.use(express.static(path.resolve(__dirname, './client/build')))
 
@@ -44,7 +44,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
 // only when ready to deploy
-app.get('/',(req,res)=>{
+app.get('*',(req,res)=>{
   app.use(express.static(path.resolve(__dirname,'client','build')))
   res.sendFile(path.resolve(__dirname,'client','build','index.html'))
 })
