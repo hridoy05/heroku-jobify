@@ -44,8 +44,9 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
 // only when ready to deploy
+app.use(express.static(path.resolve(__dirname,'client','build')))
 app.get('*',(req,res)=>{
-  app.use(express.static(path.resolve(__dirname,'client','build')))
+ 
   res.sendFile(path.resolve(__dirname,'client','build','index.html'))
 })
 
@@ -66,4 +67,4 @@ const start = async () => {
 }
 
 start()
-module.exports = app
+export default app
